@@ -7,7 +7,7 @@ class Unicorn
   end
 
   def white?
-    @color == "white"
+    color == "white"
   end
 
   def say(quote)
