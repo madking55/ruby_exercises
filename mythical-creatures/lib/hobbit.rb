@@ -9,22 +9,22 @@ class Hobbit
   end
 
   def celebrate_birthday
-    self.age += 1
+    @age += 1
   end
 
   def adult?
-    self.age >= 33
+    age >= 33
   end
 
   def old?
-    self.age > 100
+    age > 100
   end
 
   def has_ring?
-    self.name == "Frodo"
+    name == "Frodo"
   end
 
   def is_short?
-    self.name == "Rysiek"
+    name == "Rysiek"
   end
 end

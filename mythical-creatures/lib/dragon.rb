@@ -1,6 +1,6 @@
 class Dragon
   attr_reader :name, :rider, :color
-  attr_accessor  :meals, :hungry
+  attr_accessor :meals, :hungry
 
   def initialize(name, color, rider)
     @name = name
@@ -15,7 +15,7 @@ class Dragon
   end
 
   def eat
-    self.meals += 1
-    self.hungry = false if meals == 3
+    @meals += 1
+    @hungry = false if meals == 3
   end
 end

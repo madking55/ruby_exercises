@@ -14,6 +14,6 @@ class Vampire
   end
 
   def drink
-    self.thirsty = false
+    @thirsty = false
   end
 end
