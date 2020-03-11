@@ -69,12 +69,12 @@ class NestedTest < MiniTest::Test
 
   def test_list_of_all_ingredients_across_all_restaurants
     #=======================
-    ingredients = []
-    ingredients << olive_ingredients = stores[:olive_garden][:dishes].map { |dish| dish[:ingredients]}
-    ingredients << dennys_ingredients = stores[:dennys][:dishes].map { |dish| dish[:ingredients]}
-    ingredients << macdonalds_ingredients = stores[:macdonalds][:dishes].map { |dish| dish[:ingredients]}
-    ingredients = ingredients.flatten
-    # ingredients = stores.each { |k,v| ingredients << k[:dishes].map { |dish| dish[:ingredients]} }.flatten
+    # ingredients << olive_ingredients = stores[:olive_garden][:dishes].map { |dish| dish[:ingredients]}
+    # ingredients << dennys_ingredients = stores[:dennys][:dishes].map { |dish| dish[:ingredients]}
+    # ingredients << macdonalds_ingredients = stores[:macdonalds][:dishes].map { |dish| dish[:ingredients]}
+    ingredients = stores.map do |store, store_data|
+       store_data[:dishes].map { |dish| dish[:ingredients] }
+    end.flatten
     #=======================
     assert_equal ["Rice",
                   "Cheese",
@@ -104,9 +104,11 @@ class NestedTest < MiniTest::Test
   end
 
   def test_full_menu_for_olive_garden
-    skip
     #=======================
-    olive_garden_menu = stores[:olive_garden][:dishes].map { |dish| { dish[:name] => dish } }
+    olive_garden_menu = {}
+    stores[:olive_garden][:dishes].each do |dish| 
+      olive_garden_menu[dish[:name]] = dish
+    end
     #=======================
     expected = ({"Risotto"=>{:name=>"Risotto", :ingredients=>["Rice", "Cheese", "Butter"], :price=>12},
                   "Steak"=>{:name=>"Steak", :ingredients=>["Beef", "Garlic"], :price=>15}})
@@ -114,9 +116,13 @@ class NestedTest < MiniTest::Test
   end
 
   def test_menu_accross_all_restaurants
-     skip
     #=======================
-    #  full_menu = <your code here>
+     full_menu = {}
+     stores.each do |store|
+      store.last[:dishes].each do |dish|
+        full_menu[dish[:name]] = dish
+      end
+     end
     #=======================
     expected = ({"Risotto"=>
                       {:name=>"Risotto", :ingredients=>["Rice", "Cheese", "Butter"], :price=>12},
