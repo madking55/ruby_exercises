@@ -1,5 +1,5 @@
 class Wizard
-  attr_reader :name
+  attr_reader :name, :bearded
   attr_accessor :spell
 
   def initialize(name, bearded: true)
@@ -9,12 +9,11 @@ class Wizard
   end
 
   def bearded?
-    @bearded
+    bearded
   end
 
   def incantation(spell)
-    return "sudo chown ~/bin" if spell == "chown ~/bin"
-    return "sudo rm -rf /home/mirandax" if spell == "rm -rf /home/mirandax"
+   "sudo #{spell}"
   end
 
   def rested?
