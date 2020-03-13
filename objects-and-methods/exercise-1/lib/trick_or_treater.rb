@@ -1,9 +1,9 @@
 class TrickOrTreater
-
   attr_reader :bag
+
   def initialize(costume)
     @costume = costume
-    @bag = []
+    @bag = Bag.new
   end
 
   def dressed_up_as
@@ -11,16 +11,14 @@ class TrickOrTreater
   end
 
   def has_candy?
-    !bag.empty?
+    !@bag.empty?
   end
 
   def candy_count
-    bag.size
+    @bag.count
   end
 
   def eat
-    bag.pop
-    bag
+    @bag.candies.pop
   end
-
 end

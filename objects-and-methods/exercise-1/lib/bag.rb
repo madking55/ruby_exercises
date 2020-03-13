@@ -1,28 +1,22 @@
 class Bag
-  attr_accessor :empty, :count, :candies 
-  def initialize(empty = true, count = 0, candies = [])
-    @empty = empty
-    @count = count
-    @candies = candies
+  attr_accessor :candies 
+  def initialize
+    @candies = []
   end
 
   def empty?
-    empty
+    @candies.empty?
   end
 
   def <<(candy)
-    candies << candy
-  end
-
-  def empty?
-    candies.empty?
+    @candies << candy
   end
 
   def count
-    candies.count
+    @candies.count
   end
 
   def contains?(candy)
-    candies.first.type == candy
+    @candies.first.type == candy
   end
 end
