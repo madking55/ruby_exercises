@@ -1,6 +1,7 @@
 require './nesting'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'pry'
 
 # The intent of this exercise is to practice working with nested collections.
 # Some tests will be able to pass without any enumeration, and others will require
@@ -54,21 +55,26 @@ class NestedTest < MiniTest::Test
 
   def test_list_of_dishes_names_for_olive_garden
     #=======================
-    dishes_names = stores[:olive_garden][:dishes].map { |dish| dish[:name] }
+    dishes_names = stores[:olive_garden][:dishes].map { |dish| dish[:name]}
     #=======================
     assert_equal ['Risotto', 'Steak'], dishes_names
   end
 
   def test_list_of_employees_across_all_restaurants
     #=======================
-    employee_names = stores.map { |k,v| v[:employees] }.flatten
+    employee_names = stores.map { |k, v| v[:employees] }.flatten
     #=======================
     assert_equal ["Jeff","Zach","Samantha","Bob","Sue","James","Alvin","Simon","Theodore"], employee_names
   end
 
   def test_list_of_all_ingredients_across_all_restaurants
     #=======================
-    # ingredients = stores
+    # ingredients << olive_ingredients = stores[:olive_garden][:dishes].map { |dish| dish[:ingredients]}
+    # ingredients << dennys_ingredients = stores[:dennys][:dishes].map { |dish| dish[:ingredients]}
+    # ingredients << macdonalds_ingredients = stores[:macdonalds][:dishes].map { |dish| dish[:ingredients]}
+    ingredients = stores.map do |store, store_data|
+       store_data[:dishes].map { |dish| dish[:ingredients] }
+    end.flatten
     #=======================
     assert_equal ["Rice",
                   "Cheese",
@@ -91,17 +97,18 @@ class NestedTest < MiniTest::Test
   end
 
   def test_full_menu_price_for_olive_garden
-    skip
     #=======================
-    # full_menu_price = <your code here>
+    full_menu_price = stores[:olive_garden][:dishes].map { |dish| dish[:price] }.sum
     #=======================
     assert_equal 27, full_menu_price
   end
 
   def test_full_menu_for_olive_garden
-    skip
     #=======================
-    # olive_garden_menu = <your code here>
+    olive_garden_menu = {}
+    stores[:olive_garden][:dishes].each do |dish| 
+      olive_garden_menu[dish[:name]] = dish
+    end
     #=======================
     expected = ({"Risotto"=>{:name=>"Risotto", :ingredients=>["Rice", "Cheese", "Butter"], :price=>12},
                   "Steak"=>{:name=>"Steak", :ingredients=>["Beef", "Garlic"], :price=>15}})
@@ -109,9 +116,13 @@ class NestedTest < MiniTest::Test
   end
 
   def test_menu_accross_all_restaurants
-     skip
     #=======================
-    #  full_menu = <your code here>
+     full_menu = {}
+     stores.each do |store|
+      store.last[:dishes].each do |dish|
+        full_menu[dish[:name]] = dish
+      end
+     end
     #=======================
     expected = ({"Risotto"=>
                       {:name=>"Risotto", :ingredients=>["Rice", "Cheese", "Butter"], :price=>12},
