@@ -100,14 +100,13 @@ class CentaurTest < Minitest::Test
     centaur.run
     centaur.shoot
 
-    # binding.pry
     assert centaur.cranky?
 
     centaur.lay_down
     centaur.sleep
 
     refute centaur.cranky?
-
+    
     centaur.stand_up
 
     assert_equal "Twang!!!", centaur.shoot
