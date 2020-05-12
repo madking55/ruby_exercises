@@ -1,7 +1,7 @@
 require_relative "test_helper"
 require "./lib/mad_lib"
 
-class MadLibTest < Minitest::Test
+class MadlibTest < Minitest::Test
 
   def test_it_can_create_a_mad_lib
     madlib = Madlib.new

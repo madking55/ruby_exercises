@@ -40,32 +40,37 @@ class SimpleMathTest < Minitest::Test
   end
 
   def test_it_can_multiply_two_numbers
+    sm = SimpleMath.new
 
-    # instantiate the class
-    #
-    # call the method being tested
-    # determine your expected result
-    #
-    # check results
+    result = sm.multiply(5, 3)
+
+    assert_equal 15, result
   end
 
 
   def test_it_can_multiply_two_other_numbers
 
-    # instantiate the class
-    #
-    # call the method being tested
-    # determine your expected result
-    #
-    # check results
+    sm = SimpleMath.new
+
+    result = sm.multiply(15, 4)
+
+    assert_equal 60, result
   end
 
   def test_it_can_divide_two_numbers
-    # your code goes here
+    sm = SimpleMath.new
+
+    result = sm.divide(16, 4)
+
+    assert_equal 4, result
   end
 
   def test_it_can_divide_two_other_numbers
-    # # your code goes here
+    sm = SimpleMath.new
+
+    result = sm.divide(5, 2)
+
+    assert_equal 2.5, result
   end
 
 end
