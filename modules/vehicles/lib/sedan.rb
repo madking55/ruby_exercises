@@ -1,4 +1,8 @@
+require './drivable'
+require './paintable'
+
 class Sedan
+  include Paintable, Drivable
   attr_reader :year,
               :color,
               :odometer
@@ -10,15 +14,6 @@ class Sedan
   end
 
   def num_wheels
-    return 4
-  end
-
-  def paint(new_color)
-    @color = new_color
-  end
-
-  def drive(miles)
-    @odometer += miles
-    puts "Driving #{miles} miles."
+    4
   end
 end

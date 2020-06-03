@@ -1,6 +1,8 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/truck'
+require './drivable'
+require './paintable'
 
 class TruckTest < Minitest::Test
   def setup

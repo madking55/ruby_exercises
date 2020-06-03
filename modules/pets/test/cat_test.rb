@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/cat'
+require './cute'
 
 class CatTest < Minitest::Test
   def setup

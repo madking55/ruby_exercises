@@ -1,4 +1,8 @@
+require './drivable'
+require './paintable'
+
 class Truck
+  include Paintable, Drivable
   attr_reader :year,
               :color,
               :odometer,
@@ -9,15 +13,6 @@ class Truck
     @color = color
     @odometer = 0
     @cargo = cargo
-  end
-
-  def paint(new_color)
-    @color = new_color
-  end
-
-  def drive(miles)
-    @odometer += miles
-    puts "Driving #{miles} miles."
   end
 
   def load_cargo(cargo)

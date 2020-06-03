@@ -1,4 +1,6 @@
+require './cute'
 class Dog
+  include Cute
   attr_reader :name, :tricks
 
   def initialize(name)
@@ -6,16 +8,12 @@ class Dog
     @tricks = []
   end
 
-  def cute?
-    true
+  def play
+    "Playing with ball"
   end
 
   def speak
     "Woof, my name is #{@name}"
-  end
-
-  def play
-    "Playing with ball"
   end
 
   def learn_trick(trick)

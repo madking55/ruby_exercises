@@ -1,6 +1,8 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/sedan'
+require './drivable'
+require './paintable'
 
 class SedanTest < Minitest::Test
   def setup
